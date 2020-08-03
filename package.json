@@ -9,7 +9,7 @@
     "test": "cd client && npm test",
     "preinstall": "cd backend && npm install",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build:prod"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -19,6 +19,7 @@
     "npm": "6.9.0"
   },
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0"
   }
 }

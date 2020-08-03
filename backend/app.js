@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken");    // Validates access tokens automatically
 
 /**** Configuration ****/
 const appName = "Express"; // Change the name of your server app!
-const port = process.env.PORT || 8080; // Pick port 8080 if the PORT env variable is empty.
+const port = process.env.PORT || 8000; // Pick port 8080 if the PORT env variable is empty.
 const app = express(); // Get the express app object.
 require('dotenv').config({path: '../client/.env'});
 
@@ -30,6 +30,7 @@ let openPaths = [
     { url: '/api/users/authenticate', methods: ['POST'] },
     { url: '/', methods: ['GET',] },
     { url: '/api/suggestions', methods: ['GET'] },
+    { url: '/manifest.json', methods: ['GET',] }
 ];
 
 // Validate the user using authentication. checkJwt checks for auth token.
