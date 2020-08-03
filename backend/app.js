@@ -26,17 +26,17 @@ app.use(express.static('../build')); // Needed for serving production build of R
 const mongoDb = require('./db')(mongoose);
 
 // Open paths that do not need login. Any route not included here is protected!
-let openPaths = [
-    { url: '/api/users/authenticate', methods: ['POST'] },
-    { url: '/', methods: ['GET',] },
-    { url: '/api/suggestions', methods: ['GET'] },
-    { url: '/manifest.json', methods: ['GET'] },
-    { url: '/client/build', methods: ['GET'] }
-];
+// let openPaths = [
+//     { url: '/api/users/authenticate', methods: ['POST'] },
+//     { url: '/', methods: ['GET',] },
+//     { url: '/api/suggestions', methods: ['GET'] },
+//     { url: '/manifest.json', methods: ['GET'] },
+//     { url: '/client/build', methods: ['GET'] }
+// ];
 
 // Validate the user using authentication. checkJwt checks for auth token.
-const secret = process.env.ACCESS_TOKEN_SECRET;
-app.use(checkJwt({ secret: secret }).unless({ path : openPaths }));
+// const secret = process.env.ACCESS_TOKEN_SECRET;
+// app.use(checkJwt({ secret: secret }).unless({ path : openPaths }));
 
 // This middleware checks the result of checkJwt
 app.use((err, req, res, next) => {
