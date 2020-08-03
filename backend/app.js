@@ -69,7 +69,7 @@ app.get('/api/suggestions/:id', async (req, res) =>{
 });
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname, '../client/build/index.html')
+    res.sendFile(__dirname, '../client/index.html')
 });
 
 //Post Suggestion
