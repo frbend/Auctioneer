@@ -94,13 +94,10 @@ if (process.env.NODE_ENV === 'production') {
     });
   }
 
-// app.get('*', (req, res) =>
-//     res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
-// );
+app.get('*', (req, res) =>
+    res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
+);
 
-app.get('*', function(req, res) {
-    res.sendFile('index.html', { root: __dirname });
-});
 
 /**** Start! ****/
 const uri = process.env.REACT_APP_MONGODB_URL;
