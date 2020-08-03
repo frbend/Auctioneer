@@ -90,7 +90,7 @@ app.post('/api/suggestion/:id', async (req, res) => {
 });
 
 app.get('/', (req, res) =>
-    res.sendFile('../client/build/index.html', { root: __dirname })
+    res.sendFile('../client/build/index.js', { root: __dirname })
 )
 
 // app.get('/', (req, res) =>
@@ -101,7 +101,7 @@ app.get('/', (req, res) =>
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('build'));
     app.get('*', (req, res) => {
-      res.sendFile(path.join('build', 'index.html'));
+      res.sendFile(path.join('build', 'index.js'));
     });
   }
 
