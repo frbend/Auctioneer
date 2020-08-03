@@ -30,11 +30,7 @@ let openPaths = [
     { url: '/api/users/authenticate', methods: ['POST'] },
     { url: '/', methods: ['GET',] },
     { url: '/api/suggestions', methods: ['GET'] },
-    { url: '/client/build', methods: ['GET'] },
-    { url: '/client/build/static/js', methods: ['GET'] },
-    { url: '/client/build/static/css', methods: ['GET'] },
-    { url: '/manifest.json', methods: ['GET'] },
-    { url: '/client/build/static/favicon.ico', methods: ['GET'] }
+    { url: '../client/build/index.html', methods: ['GET'] }
 ];
 
 // Validate the user using authentication. checkJwt checks for auth token.
