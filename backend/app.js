@@ -68,9 +68,6 @@ app.get('/api/suggestions/:id', async (req, res) =>{
     res.json(suggestion);
 });
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname, '../client/index.html')
-});
 
 //Post Suggestion
 app.post('/api/suggestions/', async (req, res) => {
@@ -98,7 +95,7 @@ if (process.env.NODE_ENV === 'production') {
   }
 
 app.get('*', (req, res) =>
-    res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
+    res.sendFile(path.resolve('../client/build/index.html'))
 );
 
 /**** Start! ****/
