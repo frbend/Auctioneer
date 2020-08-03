@@ -68,6 +68,10 @@ app.get('/api/suggestions/:id', async (req, res) =>{
     res.json(suggestion);
 });
 
+app.get('/', function(req, res){
+    res.sendFile(__dirname, '../client/build/index.html')
+});
+
 //Post Suggestion
 app.post('/api/suggestions/', async (req, res) => {
     let suggestion = {
