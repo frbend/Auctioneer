@@ -28,7 +28,8 @@ const mongoDb = require('./db')(mongoose);
 // Open paths that do not need login. Any route not included here is protected!
 let openPaths = [
     { url: '/api/users/authenticate', methods: ['POST'] },
-    { url: '/', methods: ['GET',] },
+    { url: '/', methods: ['GET'] },
+    { url: '/login', methods: ['GET'] },
     { url: '/api/suggestions', methods: ['GET'] },
     { url: '../client/build/index.html', methods: ['GET'] }
 ];
