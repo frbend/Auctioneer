@@ -25,19 +25,19 @@ app.use(express.static('../build')); // Needed for serving production build of R
 /*** Database ***/
 const mongoDb = require('./db')(mongoose);
 
-// Open paths that do not need login. Any route not included here is protected!
-// let openPaths = [
-//     { url: '/api/users/authenticate', methods: ['POST'] },
-//     { url: '/api/users/authenticate', methods: ['GET'] },
-//     { url: '/', methods: ['GET'] },
-//     { url: '/login', methods: ['GET'] },
-//     { url: '/api/suggestions', methods: ['GET'] },
-//     { url: '../client/build/index.html', methods: ['GET'] }
-// ];
+//Open paths that do need login. Any route included here is protected!
+let openPaths = [
+    { url: '/api/users/authenticate', methods: ['POST'] },
+    { url: '/api/users/authenticate', methods: ['GET'] },
+    { url: '/', methods: ['GET'] },
+    { url: '/login', methods: ['GET'] },
+    { url: '/api/suggestions', methods: ['GET'] },
+    { url: '../client/build/index.html', methods: ['GET'] }
+];
 
 // Validate the user using authentication. checkJwt checks for auth token.
 const secret = process.env.ACCESS_TOKEN_SECRET;
-//app.use(checkJwt({ secret: secret }).unless({ path : openPaths }));
+app.use(checkJwt({ secret: secret }).unless({ path : openPaths }));
 
 // This middleware checks the result of checkJwt
 app.use((err, req, res, next) => {
@@ -98,12 +98,12 @@ app.post('/api/suggestion/:id', async (req, res) => {
 // )
 
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('build'));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join('build', 'index.html'));
-    });
-  }
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static('build'));
+//     app.get('*', (req, res) => {
+//       res.sendFile(path.join('build', 'index.html'));
+//     });
+//   }
 
 app.get('*', (req, res) =>
     res.sendFile(path.resolve('../client/build', {root: __dirname}))
