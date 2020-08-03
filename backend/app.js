@@ -31,8 +31,7 @@ let openPaths = [
     { url: '/', methods: ['GET',] },
     { url: '/api/suggestions', methods: ['GET'] },
     { url: '/manifest.json', methods: ['GET'] },
-    { url: '/static/css/main.5ecd60fb.chunk.css', methods: ['GET'] },
-    { url: '/favicon.ico', methods: ['GET'] }
+    { url: '/build', methods: ['GET'] }
 ];
 
 // Validate the user using authentication. checkJwt checks for auth token.
