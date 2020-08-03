@@ -87,9 +87,6 @@ app.post('/api/suggestion/:id', async (req, res) => {
     res.json(newSignature);
 });
 
-app.get('/', (req, res) =>
-    res.sendFile('..', 'client', 'build', 'index.html', { root: __dirname })
-)
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -100,7 +97,7 @@ if (process.env.NODE_ENV === 'production') {
   }
 
 app.get('*', (req, res) =>
-    res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
+    res.sendFile(path.resolve('..', 'client', 'build', 'index.html', { root: __dirname }))
 );
 
 
