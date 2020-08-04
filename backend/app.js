@@ -90,17 +90,11 @@ app.post('/api/suggestion/:id', async (req, res) => {
 });
 
 
-app.get('/', (req, res) =>
-    res.sendFile('..', 'client', 'build', 'index.html', { root: __dirname })
-)
+app.use(express.static(path.join(__dirname, 'build')));
 
-
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('build'));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join('build', 'index.html'));
-    });
-  }
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 app.get('*', (req, res) =>
     res.sendFile(path.resolve('..', 'client', 'build', 'index.html', { root: __dirname }))
