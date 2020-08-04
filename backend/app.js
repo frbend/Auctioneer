@@ -49,7 +49,7 @@ let openPaths = [
     { url: '/build', methods: ['POST'] },
     { url: '/build/index.html', methods: ['POST'] },
     { url: '/static/js/main.264b128a.chunk.js', methods: ['GET'] },
-    { url: '/static/js/*', methods: ['GET'] }
+    { url: '/static/js/main.fc5224c9.chunk.js', methods: ['GET'] }
 
 ];
 
