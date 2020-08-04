@@ -48,8 +48,9 @@ let openPaths = [
     { url: '/index.html', methods: ['GET'] },
     { url: '/build', methods: ['POST'] },
     { url: '/build/index.html', methods: ['POST'] },
-    { url: '/static/js/main.264b128a.chunk.js', methods: ['GET'] }
-    
+    { url: '/static/js/main.264b128a.chunk.js', methods: ['GET'] },
+    { url: '/static/js/*', methods: ['GET'] }
+
 ];
 
  // Validate the user using authentication. checkJwt checks for auth token.
