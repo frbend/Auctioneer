@@ -32,8 +32,21 @@ let openPaths = [
     { url: '/', methods: ['GET'] },
     { url: '/login', methods: ['GET'] },
     { url: '/api/suggestions', methods: ['GET'] },
-   // { url: '../client/build/index.html', methods: ['GET'] },
     { url: '../client/build', methods: ['GET'] },
+    { url: '/static/js/main.fe7cc1c0.chunk.js', methods: ['GET'] },
+    { url: '/static/js/2.876b61f7.chunk.js', methods: ['GET'] },
+    { url: '/static/css/main.5ecd60fb.chunk.css', methods: ['GET'] },
+    { url: '/static/js/main.fe7cc1c0.chunk.js', methods: ['GET'] },
+    { url: '/favicon.ico', methods: ['GET'] },
+    { url: '/favicon.ico', methods: ['POST'] },
+    { url: '/manifest.json', methods: ['GET'] },
+    { url: '/manifest.json', methods: ['POST'] },
+    { url: '/static/js/2.876b61f7.chunk.js', methods: ['GET'] },
+    { url: '/static', methods: ['POST'] },
+    { url: '/static/js/2.876b61f7.chunk.js', methods: ['POST'] },
+    { url: '/index.html', methods: ['POST'] },
+    { url: '/build', methods: ['POST'] },
+    { url: '/build/index.html ', methods: ['POST'] },
 ];
 
  // Validate the user using authentication. checkJwt checks for auth token.
