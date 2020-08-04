@@ -9,7 +9,8 @@
     "start": "cd backend && node app.js",
     "dev": "cd client && npm start",
     "test": "cd client && npm test",
-    "build": "cd client && npm run build && serve -s build"
+    "build": "cd client && npm run build",
+    "heroku-postbuild" : "npm run build --prod"
   },
   "eslintConfig": {
     "extends": "react-app"
