@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "cd backend && node app.js",
+    "start": "cd client && npm start",
     "dev": "cd client && npm start",
     "test": "cd client && npm test",
     "preinstall": "cd backend && npm install",
