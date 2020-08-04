@@ -26,35 +26,35 @@ app.use(express.static('../build')); // Needed for serving production build of R
 const mongoDb = require('./db')(mongoose);
 
 //Open paths that do need login. Any route included here is protected!
-// let openPaths = [
-//     { url: '/api/users/authenticate', methods: ['POST'] },
-//     { url: '/api/users/authenticate', methods: ['GET'] },
-//     { url: '/', methods: ['GET'] },
-//     { url: '/login', methods: ['GET'] },
-//     { url: '/api/suggestions', methods: ['GET'] },
-//     { url: '../client/build/index.html', methods: ['GET'] }
-// ];
+let openPaths = [
+    { url: '/api/users/authenticate', methods: ['POST'] },
+    { url: '/api/users/authenticate', methods: ['GET'] },
+    { url: '/', methods: ['GET'] },
+    { url: '/login', methods: ['GET'] },
+    { url: '/api/suggestions', methods: ['GET'] },
+    { url: '../client/build/index.html', methods: ['GET'] }
+];
 
-// // Validate the user using authentication. checkJwt checks for auth token.
-// const secret = process.env.ACCESS_TOKEN_SECRET;
-// app.use(checkJwt({ secret: secret }).unless({ path : openPaths }));
+ // Validate the user using authentication. checkJwt checks for auth token.
+    const secret = process.env.ACCESS_TOKEN_SECRET;
+    app.use(checkJwt({ secret: secret, algorithms: ['RS256'] }).unless({ path : openPaths }));
 
 // // This middleware checks the result of checkJwt
-// app.use((err, req, res, next) => {
-//     if (err.name === 'UnauthorizedError') { // If the user didn't authorize correctly
-//         res.status(401).json({ error: err.message }); // Return 401 with error message.
-//     } else {
-//         next(); // If no errors, forward request to next middleware or route
-//     }
-// });
+    app.use((err, req, res, next) => {
+        if (err.name === 'UnauthorizedError') { // If the user didn't authorize correctly
+            res.status(401).json({ error: err.message }); // Return 401 with error message.
+        } else {
+            next(); // If no errors, forward request to next middleware or route
+        }
+    });
 
 /**** Routes ****/
 //login
-// const usersRouter = require('./routes/users_router')(secret);
-// app.use('/api/users', usersRouter);
+ const usersRouter = require('./routes/users_router')(secret);
+ app.use('/api/users', usersRouter);
 
-// //logout
-// app.use('/api/users/logout', usersRouter);
+ //logout
+ app.use('/api/users/logout', usersRouter);
 
 
 // Return all suggestions in data
@@ -89,21 +89,18 @@ app.post('/api/suggestion/:id', async (req, res) => {
     res.json(newSignature);
 });
 
-// app.get('/', (req, res) =>
-//     res.sendFile('../client/build/index.js', { root: __dirname })
-// )
 
-// app.get('/', (req, res) =>
-//     res.sendFile('..', 'client', 'build', 'index.html', { root: __dirname })
-// )
+app.get('/', (req, res) =>
+    res.sendFile('..', 'client', 'build', 'index.html', { root: __dirname })
+)
 
 
-// if (process.env.NODE_ENV === 'production') {
-//     app.use(express.static('build'));
-//     app.get('*', (req, res) => {
-//       res.sendFile(path.join('build', 'index.html'));
-//     });
-//   }
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join('build', 'index.html'));
+    });
+  }
 
 app.get('*', (req, res) =>
     res.sendFile(path.resolve('..', 'client', 'build', 'index.html', { root: __dirname }))
