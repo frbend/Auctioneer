@@ -4,7 +4,7 @@ import {Router} from "@reach/router";
 import { navigate} from "@reach/router";
 import AllAuctions from './components/AllAuctions';
 import OneAuction from './components/OneAuction';
-//import CreateSuggestion from "./components/CreateSuggestion";
+import CreateSuggestion from "./components/CreateSuggestion";
 import Login from './components/Login';
 import Nav from './components/Nav';
 import AuthService from './components/AuthService';
@@ -30,7 +30,7 @@ class App extends Component{
 
     componentDidMount() {
         this.getData().then(() => console.log("received list, list: ", this.state.suggestions));
-        //navigate("/");
+        navigate("/");
     }
     async getData(){
         const url = `${this.API_URL}/suggestions`;
