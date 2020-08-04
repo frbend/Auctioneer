@@ -4,11 +4,12 @@
   "description": "",
   "private": true,
   "scripts": {
-    "prestart": "cd backend && npm install",
+    "start": "cd backend && npm install && node app.js",
+    "dev": "cd client && npm install && npm start",
+    "test": "cd client && npm test",
+    "preinstall": "cd backend && npm install",
     "install": "cd client && npm install",
-    "start": "cd backend && node app.js",
-    "dev": "cd client && npm start",
-    "test": "cd client && npm test"
+    "build": "cd client && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
