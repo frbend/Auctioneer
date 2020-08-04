@@ -34,23 +34,26 @@ let openPaths = [
     { url: '/login', methods: ['GET'] },
     { url: '/api/suggestions', methods: ['GET'] },
     { url: '../client/build', methods: ['GET'] },
+    { url: '/static', methods: ['POST'] },
     { url: '/static/js/main.fe7cc1c0.chunk.js', methods: ['GET'] },
+    { url: '/static/js/main.fe7cc1c0.chunk.js', methods: ['GET'] },
+    { url: '/static/js/main.264b128a.chunk.js', methods: ['GET'] },
+    { url: '/static/js/main.fc5224c9.chunk.js', methods: ['GET'] },
+    { url: '/static/js/main.5255138b.chunk.js', methods: ['GET'] },
+    { url: '/logo192.png', methods: ['GET'] },
     { url: '/static/js/2.876b61f7.chunk.js', methods: ['GET'] },
+    { url: '/static/js/2.876b61f7.chunk.js', methods: ['POST'] },
+    { url: '/static/js/2.4aef2754.chunk.js', methods: ['GET'] },
+
     { url: '/static/css/main.5ecd60fb.chunk.css', methods: ['GET'] },
-    { url: '/static/js/main.fe7cc1c0.chunk.js', methods: ['GET'] },
     { url: '/favicon.ico', methods: ['GET'] },
     { url: '/favicon.ico', methods: ['POST'] },
     { url: '/manifest.json', methods: ['GET'] },
     { url: '/manifest.json', methods: ['POST'] },
-    { url: '/static/js/2.876b61f7.chunk.js', methods: ['GET'] },
-    { url: '/static', methods: ['POST'] },
-    { url: '/static/js/2.876b61f7.chunk.js', methods: ['POST'] },
     { url: '/index.html', methods: ['POST'] },
     { url: '/index.html', methods: ['GET'] },
     { url: '/build', methods: ['POST'] },
-    { url: '/build/index.html', methods: ['POST'] },
-    { url: '/static/js/main.264b128a.chunk.js', methods: ['GET'] },
-    { url: '/static/js/main.fc5224c9.chunk.js', methods: ['GET'] }
+    { url: '/build/index.html', methods: ['POST'] }
 ];
 
  // Validate the user using authentication. checkJwt checks for auth token.
