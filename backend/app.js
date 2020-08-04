@@ -54,7 +54,7 @@ let openPaths = [
 ];
 
  // Validate the user using authentication. checkJwt checks for auth token.
-    const secret = process.env.ACCESS_TOKEN_SECRET;
+    const secret = process.env.ACCESS_TOKEN_SECRET || 'secret';
     app.use(checkJwt({ secret: secret, algorithms: ['RS256'] }).unless({ path : openPaths }));
 
 // // This middleware checks the result of checkJwt
