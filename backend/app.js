@@ -107,6 +107,7 @@ app.post('/api/suggestion/:id', async (req, res) => {
     res.json(newSignature);
 });
 
+app.use(express.static(__dirname + '../../client/build'));
 
 
 app.get('/*', (req, res) =>{
