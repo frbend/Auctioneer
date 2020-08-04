@@ -106,7 +106,7 @@ app.post('/api/suggestion/:id', async (req, res) => {
 //   }
 
 app.get('*', (req, res) =>
-    res.sendFile(path.resolve('../client/build', {root: __dirname}))
+    res.sendFile(path.resolve('..', 'client', 'build', 'index.html', { root: __dirname }))
 );
 
 
