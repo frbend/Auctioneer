@@ -1,7 +1,6 @@
 {
-  "name": "suggestion-website",
+  "name": "auction_website",
   "version": "0.1.0",
-  "homepage": "https://auctioneer-awp.herokuapp.com",
   "description": "",
   "main": "index.js",
   "dependencies": {
