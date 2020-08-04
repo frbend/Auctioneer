@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "cd backend && npm install && node app.js",
-    "dev": "cd client && npm install && npm start",
+    "start": "cd backend && node app.js",
+    "dev": "cd client && npm start",
     "test": "cd client && npm test",
     "preinstall": "cd backend && npm install",
     "install": "cd client && npm install",
@@ -17,9 +17,5 @@
   "engines": {
     "node": "12.16.3",
     "npm": "6.14.0"
-  },
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "env-cmd": "^10.1.0"
   }
 }
