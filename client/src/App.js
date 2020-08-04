@@ -30,7 +30,7 @@ class App extends Component{
 
     componentDidMount() {
         this.getData().then(() => console.log("received list, list: ", this.state.suggestions));
-        navigate("/");
+        //navigate("/");
     }
     async getData(){
         const url = `${this.API_URL}/suggestions`;
