@@ -2,13 +2,13 @@ import React, {Component} from "react";
 import AuthService from "./AuthService";
 
 
-class AddSignature extends Component{
+class AddBid extends Component{
     constructor(props) {
         super(props);
         this.state = {
             signature: "",
-            submit: "",
-            timeNow: new Date().toLocaleString()
+            timeNow: new Date().toLocaleString(),
+            user: localStorage.username
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,39 +17,33 @@ class AddSignature extends Component{
 
 
     handleChange(event) {
-        this.setState({
-            signature: event.target.value
-        });
+            this.setState({
+                signature: event.target.value})
     }
 
 
     handleSubmit(event) {
-        event.preventDefault()
-        if(this.Auth.loggedIn() && this.state.signature === localStorage.username){
-            this.setState({
-                submit: this.state.signature + (" ") + this.state.timeNow 
-            });
+        if(this.Auth.loggedIn()){
+            this.props.submit(("Bid made by: ") + this.state.user + (", ") + this.state.signature + ("kr") + (" ") + ("at ") + this.state.timeNow);
         }
         if(this.Auth.loggedIn()===false){
             return alert("You must be logged in!")
         }
-        if(this.state.signature !== localStorage.username){
-            return alert ("You must use your username to create a signature!")
+        if(this.state.input >= this.props.renderBids.li){
+            return alert ("Amount must be higher")
         }
-    }
+    } 
+
 
     render() {
-        return(
+            return(
             <>
-                <h3>Signature: </h3>
-                <form onSubmit={this.handleSubmit}>
-                <input value={this.state.signature} onChange={this.handleChange} />
-                <button className="submit" type="submit">Submit</button>
-                </form>
-                <h3>{this.state.submit}</h3>
+                <h3>Add a bid here: </h3>
+                <input name="newBid" onChange={event => this.handleChange(event)} type="number" />
+                <button onClick={_ => this.handleSubmit()}>Bid!</button>
             </>
         )
     }
 }
 
-export default AddSignature;
+export default AddBid;

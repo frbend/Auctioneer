@@ -4,10 +4,11 @@ import {Router} from "@reach/router";
 import { navigate} from "@reach/router";
 import AllAuctions from './components/AllAuctions';
 import OneAuction from './components/OneAuction';
-import CreateSuggestion from "./components/CreateSuggestion";
+//import CreateSuggestion from "./components/CreateSuggestion";
 import Login from './components/Login';
 import Nav from './components/Nav';
 import AuthService from './components/AuthService';
+import ErrorBoundary from './components/ErrorBoundary';
 
 
 class App extends Component{
@@ -50,6 +51,9 @@ class App extends Component{
             console.log("Login error: ", e);
         }
     }
+    async userLogin(){
+        return localStorage.username
+     };
     async logout () {
         try {
            this.Auth.logout();
@@ -64,10 +68,6 @@ class App extends Component{
 
     getSuggestion(id){
         return this.state.suggestions.find(suggestion => suggestion._id ===id);
-    };
-
-    async userLogin(){
-       return localStorage.username
     };
 
 
@@ -97,15 +97,16 @@ class App extends Component{
     async postSignature(signature, suggestionId) {
         console.log("postSignature", signature, suggestionId);
         const url = `${this.API_URL}/suggestions/${suggestionId}`;
-
-        const response = await fetch(url, {
+        const token = localStorage.getItem("token");
+        const response = await fetch(url ,{
             headers: {
-                'Content-Type': 'application/json'
-            },
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + [token],
+                    },
             method: 'POST',
             body: JSON.stringify({
                 text: signature,
-                timestamp: Date.now()
             })
         });
         const data = await response.json();
@@ -124,22 +125,21 @@ class App extends Component{
   render() {    
     return(
         <>
+        <ErrorBoundary>
           <h1>Auctioneer</h1>
             <Nav />
-            <Router>
-                <AllAuctions path="/" data={this.state.suggestions}/>
-                  <OneAuction path="/suggestion/:id"
-                  getSuggestion={(id) => this.getSuggestion(id)}
-                  submit={(signature, suggestionId) => this.setSignature(signature, suggestionId)}
-                  time={(suggestionId, signatureID, time) => this.time(suggestionId, signatureID, time)}
-                  />
-                <Login path="/login" login={(username, password) => this.login(username, password)}/>
-            </Router>
+                <Router>
+                    <AllAuctions path="/" data={this.state.suggestions}/>
+                    <OneAuction path="/suggestion/:id"
+                    getSuggestion={(id) => this.getSuggestion(id)}
+                    submit={(signature, suggestionId) => this.setSignature(signature, suggestionId)}
+                    />
+                    <Login path="/login" login={(username, password) => this.login(username, password)}/>
+                </Router>
             <button><Link to="/">Back</Link></button><br/>
-            {/* <button><Link to="/new">New suggestion</Link></button><br/> */}
-            {/* <button><Link to="/login">Login</Link></button> */}
             <button onClick={_ => this.logout()}>Logout</button>
             {this.Auth.loggedIn() ? <p>Logged in as {localStorage.username}</p> : <p>Not logged in</p>}
+        </ErrorBoundary>
         </>
     )
   }

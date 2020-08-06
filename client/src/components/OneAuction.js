@@ -3,45 +3,47 @@ import AddBid from "./AddBid";
 
 
 
-class OneSuggestion extends Component{
+class OneAuction extends Component{
+
+    constructor(props){
+        super(props);
+        this.renderBids = this.renderBids.bind(this);
+        this.renderTitle = this.renderTitle.bind(this);
+    }
 
     submit(signature) {
         this.props.submit(signature, this.props.id);
     }
 
-
-
-
-    renderSignatures(){
-
+    renderBids(){
         const suggestion = this.props.getSuggestion(this.props.id);
-        if (suggestion === undefined){
-            return <p>we have nothing here</p>
+
+        return suggestion.signatures.map(signature => <section>
+            <ul>
+                <li>{signature.text}</li>
+            </ul>
+        </section>)
         }
-        else {
-            return suggestion.signatures.map(signature => <section>
-                <ul>
-                    <li>{signature.text}</li>
-                </ul>
-            </section>);
+    renderTitle(){
+            const suggestion = this.props.getSuggestion(this.props.id);
+            return suggestion.title
         }
-    }
+
 
     render() {
-
         const suggestion = this.props.getSuggestion(this.props.id);
 
         return(
             <>
-                <h3>Title:{suggestion.title}</h3>
-                <h3>Signatures</h3>
-                <section>
-                <AddBid />
-                    {/* <h3>{this.props.submit}</h3> */}
-                </section>
+                <h3>Title:{this.renderTitle()}</h3>
+                <h3>Author:{suggestion.author}</h3>
+                <h3>Description:<br /><br />{suggestion.description}</h3>
+                <h3>Bids</h3>
+                <section>{this.renderBids()}</section>
+                <AddBid submit={(signature) => this.submit(signature)}></AddBid> 
             </>
         );
     }
 }
 
-export default OneSuggestion;
+export default OneAuction;

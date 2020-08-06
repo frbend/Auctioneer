@@ -1,10 +1,10 @@
 class Db {
     constructor(mongoose) {
         const suggestionSchema = new mongoose.Schema({
-            text: String,
+            title: String,
             signatures: [{
-                text: String,
-                time : { type : Date, default: Date.now }
+                text: String
+               // time : { type : Date, default: Date.now }
             }]
         });
         this.suggestionModel = mongoose.model('suggestion', suggestionSchema);
@@ -35,10 +35,10 @@ class Db {
         return await suggestion.save();
     }
 
-    async createSignature(id, newSignature) {
+    async createSignature(id, newSignature, timestamp) {
         let signature = {
             text: newSignature,
-            time : { type : Date, default: Date.now }
+            date: timestamp
         };
         const suggestion = await this.getSuggestion(id);
         suggestion.signatures.push(signature);
@@ -55,14 +55,20 @@ class Db {
             let promises = [];
             let suggestion1 = new this.suggestionModel({
                 title: "Suggestion1",
-                signatures: []
+                signatures: [
+                    11,
+                     "frbend",
+                ]
             });
 
             promises.push(suggestion1.save());
 
             let suggestion2 = new this.suggestionModel({
                 title: "Suggestion2",
-                signatures: []
+                signatures: [
+                    55,
+                    "frbend"
+                ]
             });
 
             promises.push(suggestion2.save());

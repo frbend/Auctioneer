@@ -33,26 +33,8 @@ let openPaths = [
     { url: '/', methods: ['GET'] },
     { url: '/login', methods: ['GET'] },
     { url: '/api/suggestions', methods: ['GET'] },
+    { url: '/api/suggestions/:suggestionId', methods: ['POST'] },
     { url: '../client/build', methods: ['GET'] },
-    { url: '/static', methods: ['POST'] },
-    { url: '/static', methods: ['GET'] },
-    { url: '/static/js/main.fe7cc1c0.chunk.js', methods: ['GET'] },
-    { url: '/static/js/main.fe7cc1c0.chunk.js', methods: ['GET'] },
-    { url: '/static/js/main.264b128a.chunk.js', methods: ['GET'] },
-    { url: '/static/js/main.fc5224c9.chunk.js', methods: ['GET'] },
-    { url: '/static/js/main.5255138b.chunk.js', methods: ['GET'] },
-    { url: '/logo192.png', methods: ['GET'] },
-    { url: '/static/js/2.876b61f7.chunk.js', methods: ['GET'] },
-    { url: '/static/js/2.876b61f7.chunk.js', methods: ['POST'] },
-    { url: '/static/js/2.4aef2754.chunk.js', methods: ['GET'] },
-    { url: '/static/js/2.4aef2754.chunk.js.map', methods: ['GET'] },
-
-    { url: '/static/css/main.5ecd60fb.chunk.css.map', methods: ['GET'] },
-    { url: '/static/css/main.5ecd60fb.chunk.css', methods: ['GET'] },
-    { url: '/favicon.ico', methods: ['GET'] },
-    { url: '/favicon.ico', methods: ['POST'] },
-    { url: '/manifest.json', methods: ['GET'] },
-    { url: '/manifest.json', methods: ['POST'] },
     { url: '/index.html', methods: ['POST'] },
     { url: '/index.html', methods: ['GET'] },
     { url: '/build', methods: ['POST'] },
@@ -61,7 +43,7 @@ let openPaths = [
 
  // Validate the user using authentication. checkJwt checks for auth token.
     const secret = process.env.ACCESS_TOKEN_SECRET;
-    app.use(checkJwt({ secret: secret || 'secret', algorithms: ['RS256'] }).unless({ path : openPaths }));
+    app.use(checkJwt({ secret: secret, algorithms: ['HS256'] }).unless({ path : openPaths }));
 
 // // This middleware checks the result of checkJwt
     app.use((err, req, res, next) => {
@@ -104,13 +86,12 @@ app.post('/api/suggestions/', async (req, res) => {
     res.json(newSuggestion);
 });
 
-//PostSignature
-app.post('/api/suggestion/:id', async (req, res) => {
-    let signature = {
-        suggestionId: req.params.id,
-    };
-    const newSignature = await mongoDb.createSignature(signature);
+//Post Bid
+app.post('/api/suggestions/:id', async (req, res) => {
+    let suggestionId = req.params.id;
+    const newSignature = await mongoDb.createSignature(suggestionId, req.body.text);
     res.json(newSignature);
+    console.log(newSignature)
 });
 
 app.use(express.static(__dirname + '../../client/build'));
