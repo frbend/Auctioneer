@@ -29,9 +29,9 @@ class AddBid extends Component{
         if(this.Auth.loggedIn()===false){
             return alert("You must be logged in!")
         }
-        if(this.state.input >= this.props.renderBids.li){
-            return alert ("Amount must be higher")
-        }
+        // if(this.state.input >= this.props.renderBids.li){
+        //     return alert ("Amount must be higher")
+        // }
     } 
 
 
