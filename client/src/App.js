@@ -4,7 +4,6 @@ import {Router} from "@reach/router";
 import { navigate} from "@reach/router";
 import AllAuctions from './components/AllAuctions';
 import OneAuction from './components/OneAuction';
-//import CreateSuggestion from "./components/CreateSuggestion";
 import Login from './components/Login';
 import Nav from './components/Nav';
 import AuthService from './components/AuthService';
@@ -30,7 +29,7 @@ class App extends Component{
   }
 
     componentDidMount() {
-        this.getData().then(() => console.log("received list, list: ", this.state.suggestions));
+        this.getData().then(() => console.log("received auction items from db: ", this.state.suggestions));
         navigate("/");
     }
     async getData(){
@@ -70,32 +69,23 @@ class App extends Component{
         return this.state.suggestions.find(suggestion => suggestion._id ===id);
     };
 
+     getSignature(id){
+         return this.state.suggestion.signatures.find(signature => signature._id ===id); 
+         //id here would be the value
+     }
 
-    async postSuggestion(title) {
+     getSignatureMax(id, number){
+         try{
+            const value = this.getSignature(id, number)
+             return console.log(value);
+         }
+         catch (e) {
+            console.log("Login error: ", e);
+         }
+     }
 
-        console.log("postSuggestion", title);
-        const url = `${this.API_URL}/suggestions`;
-
-        const response = await fetch(url, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({
-                title: title,
-                signatures: []
-            })
-        });
-        const data = await response.json();
-        console.log("Printing the response:", data);
-        this.getData()
-            .catch((error) =>{
-                console.log(error)
-            })
-        }
 
     async postSignature(signature, suggestionId) {
-        console.log("postSignature", signature, suggestionId);
         const url = `${this.API_URL}/suggestions/${suggestionId}`;
         const token = localStorage.getItem("token");
         const response = await fetch(url ,{
@@ -107,6 +97,7 @@ class App extends Component{
             method: 'POST',
             body: JSON.stringify({
                 text: signature,
+                //number: signature
             })
         });
         const data = await response.json();

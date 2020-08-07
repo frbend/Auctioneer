@@ -18,20 +18,17 @@ class AddBid extends Component{
 
     handleChange(event) {
             this.setState({
-                signature: event.target.value})
+                signature: event.target.value
+            })
     }
-
 
     handleSubmit(event) {
         if(this.Auth.loggedIn()){
-            this.props.submit(("Bid made by: ") + this.state.user + (", ") + this.state.signature + ("kr") + (" ") + ("at ") + this.state.timeNow);
+            this.props.submit(("Bid made by: ") + this.state.user  + (", ")+ (this.state.signature) + ("kr ") + (" at ") + this.state.timeNow, this.state.signature);
         }
         if(this.Auth.loggedIn()===false){
             return alert("You must be logged in!")
         }
-        // if(this.state.input >= this.props.renderBids.li){
-        //     return alert ("Amount must be higher")
-        // }
     } 
 
 

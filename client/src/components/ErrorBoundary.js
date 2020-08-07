@@ -1,3 +1,4 @@
+//from react docs --> displays fallback UI in production if there are errors on the page
 import React from "react";
 
 

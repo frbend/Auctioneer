@@ -20,7 +20,6 @@ class Login extends Component {
     }
 
     handleLogin() {
-        //console.log("login", this.state.username);
         this.props.login(this.state.username, this.state.password);
     }
 

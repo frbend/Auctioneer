@@ -3,8 +3,8 @@ class Db {
         const suggestionSchema = new mongoose.Schema({
             title: String,
             signatures: [{
-                text: String
-               // time : { type : Date, default: Date.now }
+                text: String,
+                //number: Number
             }]
         });
         this.suggestionModel = mongoose.model('suggestion', suggestionSchema);
@@ -18,8 +18,6 @@ class Db {
             return {};
         }
     }
-
-
 
     async getSuggestion(id) {
         try {
@@ -35,15 +33,17 @@ class Db {
         return await suggestion.save();
     }
 
-    async createSignature(id, newSignature, timestamp) {
+    async createSignature(id, newSignature) {
         let signature = {
             text: newSignature,
-            date: timestamp
+            number: newSignature
         };
+
         const suggestion = await this.getSuggestion(id);
         suggestion.signatures.push(signature);
         return await suggestion.save();
     }
+
 
     /***some dummy data ***/
     async fillIfEmpty() {
@@ -54,42 +54,56 @@ class Db {
             console.log("Adding data test data into empty db!");
             let promises = [];
             let suggestion1 = new this.suggestionModel({
-                title: "Suggestion1",
+                title: "Auction Item 1",
+                description: "Description of the item",
+                author: "frbend",
                 signatures: [
-                    11,
-                     "frbend",
+                    "Bid made by: frbend, 12kr at 07/08/2020, 08:24:04"
                 ]
             });
 
             promises.push(suggestion1.save());
 
             let suggestion2 = new this.suggestionModel({
-                title: "Suggestion2",
+                title: "Auction Item 2",
+                description: "Description of the item",
+                author: "frbend",
                 signatures: [
-                    55,
-                    "frbend"
+                    "Bid made by: frbend, 1800kr at 07/08/2020, 08:25:04"
                 ]
             });
 
             promises.push(suggestion2.save());
 
             let suggestion3 = new this.suggestionModel({
-                title: "Suggestion3",
-                signatures: []
+                title: "Auction Item 3",
+                description: "Description of the item",
+                author: "frbend",
+                signatures: [
+                    "Bid made by: frbend, 8kr at 07/08/2020, 08:20:04"
+                ]
             });
 
             promises.push(suggestion3.save());
 
             let suggestion4 = new this.suggestionModel({
-                title: "Suggestion4",
-                signatures: []
+                title: "Auction Item 4",
+                description: "Description of the item",
+                author: "frbend",
+                signatures: [
+                    "Bid made by: frbend, 12kr at 07/08/2020, 09:14:00"
+                ]
             });
 
             promises.push(suggestion4.save());
 
             let suggestion5 = new this.suggestionModel({
-                title: "Suggestion5",
-                signatures: []
+                title: "Auction Item 5",
+                description: "Description of the item",
+                author: "frbend",
+                signatures: [
+                    "Bid made by: frbend, 100kr at 07/08/2020, 10:10:02"
+                ]
             });
 
             promises.push(suggestion5.save());

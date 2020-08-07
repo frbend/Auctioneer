@@ -21,8 +21,6 @@ class AuthService {
         }
          this.setToken(json.token);
          this.setUsername(username);
-        //localStorage.setItem("username");
-        //localStorage.setItem("token");
         return json;
     }
 

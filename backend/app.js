@@ -33,8 +33,6 @@ let openPaths = [
     { url: '/', methods: ['GET'] },
     { url: '/login', methods: ['GET'] },
     { url: '/api/suggestions', methods: ['GET'] },
-    { url: '/api/suggestions/:suggestionId', methods: ['POST'] },
-    { url: '../client/build', methods: ['GET'] },
     { url: '/index.html', methods: ['POST'] },
     { url: '/index.html', methods: ['GET'] },
     { url: '/build', methods: ['POST'] },
@@ -89,7 +87,7 @@ app.post('/api/suggestions/', async (req, res) => {
 //Post Bid
 app.post('/api/suggestions/:id', async (req, res) => {
     let suggestionId = req.params.id;
-    const newSignature = await mongoDb.createSignature(suggestionId, req.body.text);
+    const newSignature = await mongoDb.createSignature(suggestionId, req.body.text, req.body.number);
     res.json(newSignature);
     console.log(newSignature)
 });

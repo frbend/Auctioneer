@@ -17,7 +17,7 @@ class OneAuction extends Component{
 
     renderBids(){
         const suggestion = this.props.getSuggestion(this.props.id);
-
+        
         return suggestion.signatures.map(signature => <section>
             <ul>
                 <li>{signature.text}</li>
