@@ -62,13 +62,9 @@ module.exports = secret => {
                 if (result) { // If the password matched
                     const payload = { username: username };
                     const token = jwt.sign(payload, secret, { expiresIn: '1h' });
-                    const refreshToken = jwt.sign(payload, secret);
-                    refreshTokens.push(refreshToken);
                     res.json({
                         msg: `User '${username}' authenticated successfully`,
-                        token: token,
-                        refreshToken: refreshToken,
-                        
+                        token: token                        
                     });
                     
                 }

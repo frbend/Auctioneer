@@ -61,7 +61,7 @@ let openPaths = [
  app.use('/api/users/logout', usersRouter);
 
 
-// Return all suggestions in data
+// Return all auction items in data
 app.get('/api/suggestions', async (req, res) =>{
     const suggestions = await mongoDb.getAllSuggestions();
     console.log(suggestions);
@@ -72,16 +72,6 @@ app.get('/api/suggestions/:id', async (req, res) =>{
     let id = req.params._id;
     const suggestion = await mongoDb.getSuggestion(id);
     res.json(suggestion);
-});
-
-
-//Post Suggestion
-app.post('/api/suggestions/', async (req, res) => {
-    let suggestion = {
-        title: req.body.title, //important
-    };
-    const newSuggestion = await mongoDb.createSuggestion(suggestion);
-    res.json(newSuggestion);
 });
 
 //Post Bid
@@ -98,10 +88,6 @@ app.use(express.static(__dirname + '../../client/build'));
 app.get('/*', (req, res) =>{
     res.sendFile(path.resolve("..","client","build","index.html"));
   });
-
-// app.get('*', (req, res) =>
-//     res.sendFile(path.resolve('..', 'client', 'build', 'index.html', { root: __dirname }))
-// );
 
 
 /**** Start! ****/

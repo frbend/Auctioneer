@@ -29,7 +29,7 @@ class App extends Component{
   }
 
     componentDidMount() {
-        this.getData().then(() => console.log("received auction items from db: ", this.state.suggestions));
+        this.getData().then(() => console.log("received list, list: ", this.state.suggestions));
         navigate("/");
     }
     async getData(){

@@ -28,15 +28,10 @@ class Db {
         }
     }
 
-    async createSuggestion(newSuggestion){
-        let suggestion = new this.suggestionModel(newSuggestion);
-        return await suggestion.save();
-    }
-
     async createSignature(id, newSignature) {
         let signature = {
             text: newSignature,
-            number: newSignature
+            //number: newSignature
         };
 
         const suggestion = await this.getSuggestion(id);
