@@ -9,7 +9,8 @@
     "test": "cd client && npm test",
     "preinstall": "cd backend && npm install",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "postbuild" : "cd client && serve -s build"
   },
   "eslintConfig": {
     "extends": "react-app"

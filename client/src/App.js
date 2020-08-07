@@ -69,11 +69,6 @@ class App extends Component{
         return this.state.suggestions.find(suggestion => suggestion._id ===id);
     };
 
-     getSignature(id){
-         return this.state.suggestion.signatures.find(signature => signature._id ===id); 
-         //id here would be the value
-     }
-
      getSignatureMax(id, number){
          try{
             const value = this.getSignature(id, number)

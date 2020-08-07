@@ -10,7 +10,7 @@ class AllAuctions extends Component{
         const list = data.map(
             list => <><li key={list._id}>
                 <Link to={`/suggestion/${list._id}`}>{list.title}<br/><br/></Link>
-                    <p>aa{}</p>
+                    <p>highest amount would be here</p>
             </li><br/>
             </>
         );
